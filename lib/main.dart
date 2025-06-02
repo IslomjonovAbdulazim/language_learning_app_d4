@@ -6,6 +6,7 @@ import 'package:language_learning_app_d4/pages/auth/login_page.dart';
 void main() {
   runApp(
     DevicePreview(
+      enabled: false,
       builder: (context) => LanguageLearningApp(),
     ),
   );
