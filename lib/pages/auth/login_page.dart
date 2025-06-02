@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                     CupertinoButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                        Get.to(RegisterPage());
+                        Get.off(RegisterPage());
                       },
                       child: Text(
                         "Sign Up",
