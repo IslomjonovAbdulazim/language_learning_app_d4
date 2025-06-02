@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:language_learning_app_d4/pages/auth/forgot_password_page.dart';
+import 'package:language_learning_app_d4/pages/auth/register_page.dart';
 import 'package:language_learning_app_d4/widgets/button_widget.dart';
 import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
 
@@ -81,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                     CupertinoButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                        Get.to(ForgotPasswordPage());
+                        Get.to(RegisterPage());
                       },
                       child: Text(
                         "Sign Up",
