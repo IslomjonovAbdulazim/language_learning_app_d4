@@ -17,9 +17,9 @@ class LoginModel {
 
   // toJson
   Map toJson() => {
-    "email": email,
-    "password": password,
-  };
+        "email": email,
+        "password": password,
+      };
 }
 
 class RegisterModel {
@@ -44,10 +44,10 @@ class RegisterModel {
 
   // toJson
   Map toJson() => {
-    "email": email,
-    "password": password,
-    "name": name,
-  };
+        "email": email,
+        "password": password,
+        "name": name,
+      };
 }
 
 class ForgetPasswordModel {
@@ -66,8 +66,8 @@ class ForgetPasswordModel {
 
   // toJson
   Map toJson() => {
-    "email": email,
-  };
+        "email": email,
+      };
 }
 
 class VerifyEmailModel {
@@ -89,9 +89,9 @@ class VerifyEmailModel {
 
   // toJson
   Map toJson() => {
-    "email": email,
-    "otp_code": otpCode,
-  };
+        "email": email,
+        "otp_code": otpCode,
+      };
 }
 
 class ResetPasswordModel {
@@ -113,9 +113,9 @@ class ResetPasswordModel {
 
   // toJson
   Map toJson() => {
-    "email": email,
-    "new_password": newPassword,
-  };
+        "email": email,
+        "new_password": newPassword,
+      };
 }
 
 class GoogleAuthModel {
@@ -146,10 +146,38 @@ class GoogleAuthModel {
 
   // toJson
   Map toJson() => {
-    "email": email,
+        "email": email,
+        "token": token,
+        "name": name,
+        "avatar": avatar,
+        "google_id": googleId,
+      };
+}
+
+class AuthResponseModel {
+  late int statusCode;
+  late String details;
+  late bool isSuccess;
+  late String? token;
+
+  AuthResponseModel({
+    required this.statusCode,
+    required this.details,
+    required this.isSuccess,
+    required this.token,
+  });
+
+  AuthResponseModel.fromJson(Map json) {
+    statusCode = json["status_code"];
+    details = json["details"];
+    isSuccess = json["is_success"];
+    token = json["token"];
+  }
+
+  Map toJson() => {
+    "status_code": statusCode,
+    "details": details,
+    "is_success": isSuccess,
     "token": token,
-    "name": name,
-    "avatar": avatar,
-    "google_id": googleId,
   };
 }
