@@ -18,6 +18,7 @@ class TextFieldWidget extends StatelessWidget {
     return TextField(
       controller: controller,
       focusNode: focus,
+      onTapOutside: (value) => focus.unfocus(),
       style: GoogleFonts.poppins(
         color: Color(0xff262626),
         fontSize: 16,

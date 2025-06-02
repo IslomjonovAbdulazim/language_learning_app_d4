@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: CupertinoColors.white,
       body: SafeArea(
         child: Padding(
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextFieldWidget(
                   hint: "Password",
                   focus: FocusNode(),
-                  controller: emailController,
+                  controller: passwordController,
                 ),
                 SizedBox(height: 10),
                 Row(
