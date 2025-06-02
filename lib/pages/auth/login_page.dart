@@ -7,6 +7,8 @@ import 'package:language_learning_app_d4/pages/auth/register_page.dart';
 import 'package:language_learning_app_d4/widgets/button_widget.dart';
 import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
 
+import '../../widgets/text_widget.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -21,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CupertinoColors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -28,6 +31,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                TitleText("Login"),
+                SizedBox(height: 30),
                 TextFieldWidget(
                   hint: "Email",
                   focus: FocusNode(),
@@ -64,9 +69,10 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () {},
                 ),
                 SizedBox(height: 10),
-                ButtonWidget(
-                  text: "Continue with Google",
+                IconButtonWidget(
+                  text: "Google",
                   onTap: () {},
+                  icon: "assets/google.png",
                 ),
                 SizedBox(height: 10),
                 Row(

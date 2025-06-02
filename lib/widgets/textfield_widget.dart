@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String hint;
@@ -17,8 +18,22 @@ class TextFieldWidget extends StatelessWidget {
     return TextField(
       controller: controller,
       focusNode: focus,
+      style: GoogleFonts.poppins(
+        color: Color(0xff262626),
+        fontSize: 16,
+      ),
       decoration: InputDecoration(
         hintText: hint,
+        filled: true,
+        fillColor: Color(0xffF5F9FE),
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 16,
+        ),
       ),
     );
   }
