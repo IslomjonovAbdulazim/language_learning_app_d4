@@ -117,3 +117,39 @@ class ResetPasswordModel {
     "new_password": newPassword,
   };
 }
+
+class GoogleAuthModel {
+  // members
+  late String email;
+  late String token;
+  late String name;
+  late String avatar;
+  late String googleId;
+
+  // constructor
+  GoogleAuthModel({
+    required this.email,
+    required this.token,
+    required this.name,
+    required this.avatar,
+    required this.googleId,
+  });
+
+  // fromJson
+  GoogleAuthModel.fromJson(Map json) {
+    email = json["email"];
+    token = json["token"];
+    name = json["name"];
+    avatar = json["avatar"];
+    googleId = json["google_id"];
+  }
+
+  // toJson
+  Map toJson() => {
+    "email": email,
+    "token": token,
+    "name": name,
+    "avatar": avatar,
+    "google_id": googleId,
+  };
+}
