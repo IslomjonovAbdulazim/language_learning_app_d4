@@ -19,6 +19,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TitleText("Login"),
+                TitleText("Sign In"),
                 SizedBox(height: 30),
                 TextFieldWidget(
                   hint: "Email",
@@ -66,8 +67,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 20),
                 ButtonWidget(
-                  text: "Log In",
-                  onTap: () {},
+                  text: "Sign In",
+                  onTap: () {
+                    // Login Logic ...
+                  },
                 ),
                 SizedBox(height: 10),
                 IconButtonWidget(
