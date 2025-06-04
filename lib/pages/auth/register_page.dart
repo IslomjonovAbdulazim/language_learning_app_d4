@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:language_learning_app_d4/pages/auth/login_page.dart';
+import 'package:language_learning_app_d4/pages/auth/verify_email_page.dart';
 import 'package:language_learning_app_d4/widgets/text_widget.dart';
 import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
 
@@ -24,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
@@ -56,6 +58,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   text: "Sing Up",
                   onTap: () {
                     // Sign Up Logic ...
+                    Get.to(VerifyEmailPage(isRegister: true));
                   },
                 ),
                 SizedBox(height: 10),
