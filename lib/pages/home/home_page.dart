@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:language_learning_app_d4/pages/auth/login_page.dart';
-import 'package:language_learning_app_d4/services/auth_service.dart';
+import '../auth/login_page.dart';
+import '../../services/auth_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
