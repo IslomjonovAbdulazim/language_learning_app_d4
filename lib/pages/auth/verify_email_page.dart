@@ -80,7 +80,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                             final res =
                                 await NetworkService.verifyForgot(model);
                             if (res) {
-                              Get.off(ResetPasswordPage());
+                              Get.off(ResetPasswordPage(email: widget.email));
                             }
                           }
                           isLoading = false;

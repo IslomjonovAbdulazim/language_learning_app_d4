@@ -6,7 +6,8 @@ import 'package:language_learning_app_d4/widgets/text_widget.dart';
 import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
 
 class ResetPasswordPage extends StatefulWidget {
-  const ResetPasswordPage({super.key});
+  final String email;
+  const ResetPasswordPage({super.key, required this.email});
 
   @override
   State<ResetPasswordPage> createState() => _ResetPasswordPageState();
