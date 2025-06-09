@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:language_learning_app_d4/models/auth_models.dart';
 import 'package:language_learning_app_d4/pages/auth/forgot_password_page.dart';
 import 'package:language_learning_app_d4/pages/auth/register_page.dart';
+import 'package:language_learning_app_d4/pages/home/home_page.dart';
+import 'package:language_learning_app_d4/services/network_service.dart';
 import 'package:language_learning_app_d4/widgets/button_widget.dart';
 import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
 
@@ -66,12 +69,29 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 SizedBox(height: 20),
-                ButtonWidget(
-                  text: "Sign In",
-                  onTap: () {
-                    // Login Logic ...
-                  },
-                ),
+                isLoading
+                    ? Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircularProgressIndicator(color: Color(0xff3461FD))
+                      )
+                    : ButtonWidget(
+                        text: "Sign In",
+                        onTap: () async {
+                          final email = emailController.text.trim();
+                          final password = passwordController.text.trim();
+                          if (email.length < 6 || password.length < 6) return;
+                          isLoading = true;
+                          setState(() {});
+                          final model =
+                              LoginModel(email: email, password: password);
+                          final res = await NetworkService.login(model);
+                          if (res) {
+                            Get.offAll(HomePage());
+                          }
+                          isLoading = false;
+                          setState(() {});
+                        },
+                      ),
                 SizedBox(height: 10),
                 IconButtonWidget(
                   text: "Google",
