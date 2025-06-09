@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:language_learning_app_d4/models/auth_models.dart';
 import 'package:language_learning_app_d4/pages/auth/login_page.dart';
 import 'package:language_learning_app_d4/pages/auth/verify_email_page.dart';
+import 'package:language_learning_app_d4/services/network_service.dart';
 import 'package:language_learning_app_d4/widgets/text_widget.dart';
 import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
 
@@ -56,9 +58,24 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 20),
                 ButtonWidget(
                   text: "Sing Up",
-                  onTap: () {
+                  onTap: () async {
                     // Sign Up Logic ...
-                    Get.to(VerifyEmailPage(isRegister: true));
+                    isLoading = true;
+                    setState(() {});
+                    final email = emailController.text.trim();
+                    final name = nameController.text.trim();
+                    final password = passwordController.text.trim();
+                    if (email.length < 6 || name.length < 3 || password.length < 6) {
+
+                    } else {
+                      final model = RegisterModel(email: email, password: password, name: name);
+                      final res = await NetworkService.register(model);
+                      if (res) {
+                        Get.to(VerifyEmailPage(isRegister: true));
+                      }
+                    }
+                    isLoading = false;
+                    setState(() {});
                   },
                 ),
                 SizedBox(height: 10),

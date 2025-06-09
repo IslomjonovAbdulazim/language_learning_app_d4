@@ -38,7 +38,7 @@ class NetworkService {
 
   static Future<bool> register(RegisterModel model) async {
     final uri = Uri.parse("$baseUrl/auth/register");
-    final response = http.post(
+    final response = await http.post(
       uri,
       body: jsonEncode(model.toJson()),
       headers: {
@@ -46,5 +46,24 @@ class NetworkService {
         "Accept": "application/json",
       },
     );
+    if (response.statusCode == 200) {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+        "Successful",
+        jsonDecode(response.body)["details"] ?? "No Detail",
+        colorText: Colors.white,
+        backgroundColor: Colors.green.shade700,
+      );
+      return true;
+    } else {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+        "Error!",
+        "Something Went Wrong! Check Your Credentials!",
+        colorText: Colors.white,
+        backgroundColor: Colors.red.shade700,
+      );
+      return false;
+    }
   }
 }
