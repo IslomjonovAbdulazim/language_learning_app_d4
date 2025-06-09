@@ -21,7 +21,7 @@ class NetworkService {
         "Accept": "application/json",
       },
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && jsonDecode(response.body)["status_code"] == 200) {
       Get.closeAllSnackbars();
       Get.snackbar(
         "Successfully Logged In",
@@ -55,7 +55,7 @@ class NetworkService {
         "Accept": "application/json",
       },
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && jsonDecode(response.body)["status_code"] == 201) {
       Get.closeAllSnackbars();
       Get.snackbar(
         "Successful",
@@ -86,7 +86,8 @@ class NetworkService {
         "Accept": "application/json",
       },
     );
-    if (response.statusCode == 200) {
+    print(response.body);
+    if (response.statusCode == 200 && jsonDecode(response.body)["status_code"] == 200) {
       Get.closeAllSnackbars();
       Get.snackbar(
         "Successfully Logged In",
@@ -120,7 +121,7 @@ class NetworkService {
         "Accept": "application/json",
       },
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && jsonDecode(response.body)["status_code"] == 200) {
       Get.closeAllSnackbars();
       Get.snackbar(
         "Successful",
@@ -151,7 +152,7 @@ class NetworkService {
         "Accept": "application/json",
       },
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && jsonDecode(response.body)["status_code"] == 200) {
       Get.closeAllSnackbars();
       Get.snackbar(
         "Successful",
@@ -182,7 +183,7 @@ class NetworkService {
         "Accept": "application/json",
       },
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && jsonDecode(response.body)["status_code"] == 200) {
       Get.closeAllSnackbars();
       Get.snackbar(
         "Successful",

@@ -89,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               emailController.clear();
                               nameController.clear();
                               passwordController.clear();
-                              Get.to(VerifyEmailPage(isRegister: true));
+                              Get.to(VerifyEmailPage(isRegister: true, email: email));
                             }
                           }
                           isLoading = false;

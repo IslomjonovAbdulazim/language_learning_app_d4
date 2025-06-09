@@ -43,8 +43,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   text: "Continue",
                   onTap: () {
                     // Forget Password Logic...
+                    final email = emailController.text.trim();
 
-                    Get.to(VerifyEmailPage(isRegister: false));
+                    Get.to(VerifyEmailPage(isRegister: false, email: email));
                   },
                 ),
               ],
