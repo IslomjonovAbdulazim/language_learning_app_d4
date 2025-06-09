@@ -12,8 +12,9 @@ import 'login_page.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   final bool isRegister;
+  final String email;
 
-  const VerifyEmailPage({super.key, required this.isRegister});
+  const VerifyEmailPage({super.key, required this.isRegister, required this.email});
 
   @override
   State<VerifyEmailPage> createState() => _VerifyEmailPageState();
@@ -52,11 +53,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                   text: widget.isRegister ? "Verify Email" : "Reset Password",
                   onTap: () {
                     // Logic ...
-                    if (widget.isRegister) {
-                      Get.offAll(LoginPage());
-                    } else {
-                      Get.off(ResetPasswordPage());
-                    }
+
                   },
                 ),
                 SizedBox(height: 10),
