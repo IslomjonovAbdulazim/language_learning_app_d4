@@ -25,6 +25,14 @@ class _RegisterPageState extends State<RegisterPage> {
   bool isLoading = false;
 
   @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -56,28 +64,38 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: passwordController,
                 ),
                 SizedBox(height: 20),
-                ButtonWidget(
-                  text: "Sing Up",
-                  onTap: () async {
-                    // Sign Up Logic ...
-                    isLoading = true;
-                    setState(() {});
-                    final email = emailController.text.trim();
-                    final name = nameController.text.trim();
-                    final password = passwordController.text.trim();
-                    if (email.length < 6 || name.length < 3 || password.length < 6) {
-
-                    } else {
-                      final model = RegisterModel(email: email, password: password, name: name);
-                      final res = await NetworkService.register(model);
-                      if (res) {
-                        Get.to(VerifyEmailPage(isRegister: true));
-                      }
-                    }
-                    isLoading = false;
-                    setState(() {});
-                  },
-                ),
+                isLoading
+                    ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(color: Color(0xff3461FD)),
+                    )
+                    : ButtonWidget(
+                        text: "Sing Up",
+                        onTap: () async {
+                          // Sign Up Logic ...
+                          isLoading = true;
+                          setState(() {});
+                          final email = emailController.text.trim();
+                          final name = nameController.text.trim();
+                          final password = passwordController.text.trim();
+                          if (email.length < 6 ||
+                              name.length < 3 ||
+                              password.length < 6) {
+                          } else {
+                            final model = RegisterModel(
+                                email: email, password: password, name: name);
+                            final res = await NetworkService.register(model);
+                            if (res) {
+                              emailController.clear();
+                              nameController.clear();
+                              passwordController.clear();
+                              Get.to(VerifyEmailPage(isRegister: true));
+                            }
+                          }
+                          isLoading = false;
+                          setState(() {});
+                        },
+                      ),
                 SizedBox(height: 10),
                 IconButtonWidget(
                   text: "Google",

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:language_learning_app_d4/services/auth_service.dart';
 
 import '../models/auth_models.dart';
 
@@ -60,6 +61,40 @@ class NetworkService {
       Get.snackbar(
         "Error!",
         "Something Went Wrong! Check Your Credentials!",
+        colorText: Colors.white,
+        backgroundColor: Colors.red.shade700,
+      );
+      return false;
+    }
+  }
+
+  static Future<bool> verifyRegister(VerifyEmailModel otp) async {
+    final uri = Uri.parse("$baseUrl/auth/verify-email");
+    final response = await http.post(
+      uri,
+      body: jsonEncode(otp.toJson()),
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+    );
+    if (response.statusCode == 200) {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+        "Successfully Logged In",
+        jsonDecode(response.body)["details"] ?? "No Detail",
+        colorText: Colors.white,
+        backgroundColor: Colors.green.shade700,
+      );
+      final token = jsonDecode(response.body)["token"];
+      print("Token: $token");
+      AuthService.login(token.toString());
+      return true;
+    } else {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+        "Wrong OTP Code",
+        jsonDecode(response.body)["details"] ?? "No Detail",
         colorText: Colors.white,
         backgroundColor: Colors.red.shade700,
       );
