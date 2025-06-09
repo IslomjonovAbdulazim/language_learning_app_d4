@@ -7,7 +7,8 @@ import 'package:http/http.dart' as http;
 import '../models/auth_models.dart';
 
 class NetworkService {
-  static const baseUrl = "http://81.19.135.65:8000";
+  static const baseUrl =
+      "https://islomjonovabdulazim-vocab-builder-backend-f7aa.twc1.net";
 
   static Future<bool> login(LoginModel model) async {
     final uri = Uri.parse("$baseUrl/api/v1/auth/register");
@@ -33,5 +34,17 @@ class NetworkService {
       );
       return false;
     }
+  }
+
+  static Future<bool> register(RegisterModel model) async {
+    final uri = Uri.parse("$baseUrl/auth/register");
+    final response = http.post(
+      uri,
+      body: jsonEncode(model.toJson()),
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+    );
   }
 }

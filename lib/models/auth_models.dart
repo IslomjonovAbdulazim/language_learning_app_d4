@@ -39,14 +39,14 @@ class RegisterModel {
   RegisterModel.fromJson(Map json) {
     email = json["email"];
     password = json["password"];
-    name = json["fullname"];
+    name = json["name"];
   }
 
   // toJson
   Map toJson() => {
         "email": email,
         "password": password,
-        "fullname": name,
+        "name": name,
       };
 }
 
