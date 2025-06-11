@@ -42,23 +42,27 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   controller: emailController,
                 ),
                 SizedBox(height: 10),
-                ButtonWidget(
-                  text: "Continue",
-                  onTap: () async {
-                    // Forget Password Logic...
-                    final email = emailController.text.trim();
-                    if (email.length < 6) return;
-                    final model = ForgetPasswordModel(email: email);
-                    isLoading = true;
-                    setState(() {});
-                    final res = await NetworkService.forgotPassword(model);
-                    if (res) {
-                      Get.to(VerifyEmailPage(isRegister: false, email: email));
-                    }
-                    isLoading = false;
-                    setState(() {});
-                  },
-                ),
+                isLoading
+                    ? CircularProgressIndicator(color: Color(0xff3461FD))
+                    : ButtonWidget(
+                        text: "Continue",
+                        onTap: () async {
+                          // Forget Password Logic...
+                          final email = emailController.text.trim();
+                          if (email.length < 6) return;
+                          final model = ForgetPasswordModel(email: email);
+                          isLoading = true;
+                          setState(() {});
+                          final res =
+                              await NetworkService.forgotPassword(model);
+                          if (res) {
+                            Get.to(VerifyEmailPage(
+                                isRegister: false, email: email));
+                          }
+                          isLoading = false;
+                          setState(() {});
+                        },
+                      ),
               ],
             ),
           ),
