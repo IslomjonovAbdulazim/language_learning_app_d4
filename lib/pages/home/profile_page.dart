@@ -78,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           shape: BoxShape.circle,
                         ),
                         child: profile!.avatarUrl == null
-                            ? Icon(CupertinoIcons.camera)
+                            ? Icon(CupertinoIcons.camera, size: 32)
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
                                 child: Image.network(
