@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'verify_email_page.dart';
+import 'package:language_learning_app_d4/models/auth_models.dart';
+import 'package:language_learning_app_d4/services/network_service.dart';
+
 import '../../widgets/button_widget.dart';
 import '../../widgets/text_widget.dart';
 import '../../widgets/textfield_widget.dart';
+import 'verify_email_page.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -41,11 +44,19 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 SizedBox(height: 10),
                 ButtonWidget(
                   text: "Continue",
-                  onTap: () {
+                  onTap: () async {
                     // Forget Password Logic...
                     final email = emailController.text.trim();
-
-                    Get.to(VerifyEmailPage(isRegister: false, email: email));
+                    if (email.length < 6) return;
+                    final model = ForgetPasswordModel(email: email);
+                    isLoading = true;
+                    setState(() {});
+                    final res = await NetworkService.forgotPassword(model);
+                    if (res) {
+                      Get.to(VerifyEmailPage(isRegister: false, email: email));
+                    }
+                    isLoading = false;
+                    setState(() {});
                   },
                 ),
               ],
