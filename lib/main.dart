@@ -1,7 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:language_learning_app_d4/pages/home/home_page.dart';
+import 'pages/home/home_page.dart';
 
 import 'pages/auth/login_page.dart';
 import 'services/auth_service.dart';

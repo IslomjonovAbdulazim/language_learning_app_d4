@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:language_learning_app_d4/pages/auth/login_page.dart';
-import 'package:language_learning_app_d4/widgets/button_widget.dart';
-import 'package:language_learning_app_d4/widgets/text_widget.dart';
-import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
+import 'login_page.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/text_widget.dart';
+import '../../widgets/textfield_widget.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   final String email;

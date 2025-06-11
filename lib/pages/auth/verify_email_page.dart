@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:language_learning_app_d4/models/auth_models.dart';
-import 'package:language_learning_app_d4/pages/auth/reset_password_page.dart';
-import 'package:language_learning_app_d4/pages/home/home_page.dart';
-import 'package:language_learning_app_d4/services/network_service.dart';
-import 'package:language_learning_app_d4/widgets/button_widget.dart';
-import 'package:language_learning_app_d4/widgets/text_widget.dart';
+import '../../models/auth_models.dart';
+import 'reset_password_page.dart';
+import '../home/home_page.dart';
+import '../../services/network_service.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/text_widget.dart';
 import 'package:pinput/pinput.dart';
 
 class VerifyEmailPage extends StatefulWidget {

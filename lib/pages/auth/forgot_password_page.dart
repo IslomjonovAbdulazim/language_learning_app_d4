@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:language_learning_app_d4/pages/auth/verify_email_page.dart';
-import 'package:language_learning_app_d4/widgets/button_widget.dart';
-import 'package:language_learning_app_d4/widgets/text_widget.dart';
-import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
+import 'verify_email_page.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/text_widget.dart';
+import '../../widgets/textfield_widget.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});

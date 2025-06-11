@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:language_learning_app_d4/models/auth_models.dart';
-import 'package:language_learning_app_d4/pages/auth/forgot_password_page.dart';
-import 'package:language_learning_app_d4/pages/auth/register_page.dart';
-import 'package:language_learning_app_d4/pages/home/home_page.dart';
-import 'package:language_learning_app_d4/services/network_service.dart';
-import 'package:language_learning_app_d4/widgets/button_widget.dart';
-import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
+import '../../models/auth_models.dart';
+import 'forgot_password_page.dart';
+import 'register_page.dart';
+import '../home/home_page.dart';
+import '../../services/network_service.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/textfield_widget.dart';
 
 import '../../widgets/text_widget.dart';
 

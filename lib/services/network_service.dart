@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:language_learning_app_d4/services/auth_service.dart';
+import 'auth_service.dart';
 
 import '../models/auth_models.dart';
 
