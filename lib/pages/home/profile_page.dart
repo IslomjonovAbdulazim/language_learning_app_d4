@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:language_learning_app_d4/models/profile_models.dart';
 import 'package:language_learning_app_d4/providers/profile_provider.dart';
+import 'package:language_learning_app_d4/utils/api_constants.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -64,7 +66,89 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 )
               : ListView(
-                  children: [],
+                  children: [
+                    CupertinoButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {},
+                      child: Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          shape: BoxShape.circle,
+                        ),
+                        child: profile!.avatarUrl == null
+                            ? Icon(CupertinoIcons.camera)
+                            : ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: Image.network(
+                                  ApiConstants.baseUrl + profile!.avatarUrl!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            profile!.email,
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Verified",
+                          style: GoogleFonts.poppins(
+                            color: Colors.green.shade700,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(width: 5),
+                        Icon(
+                          Icons.verified_user_rounded,
+                          color: Colors.green.shade700,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "User ID: ${profile!.id}",
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            height: 1,
+                          ),
+                        ),
+                        Text(
+                          "Account Created: ${DateFormat.yMMMd().format(profile!.createdAt)}",
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // Row: profile.totalFolders,   profile.totalQuizzesTaken
+
+                    // Column:
+                    // name
+                    // username
+                    // bio (maxLines: 3)
+                  ],
                 ),
     );
   }
