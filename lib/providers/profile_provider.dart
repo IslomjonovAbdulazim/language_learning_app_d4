@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 import '../models/profile_models.dart';
 import "../services/auth_service.dart";
@@ -105,17 +106,50 @@ class ProfileProvider {
     );
     return false;
   }
+
+  static Future<bool> uploadAvatar(String imageFile) async {
+    try {
+      final uri = Uri.parse('${ApiConstants.baseUrl}/auth/avatar');
+      final request = http.MultipartRequest('POST', uri);
+
+      request.headers['Authorization'] = 'Bearer ${AuthService.token}';
+
+      request.files.add(await http.MultipartFile.fromPath(
+        'file',
+        imageFile,
+        contentType: MediaType('image', 'jpeg'),
+      ));
+
+      final response = await request.send();
+      final responseData = await response.stream.bytesToString();
+      final body = jsonDecode(responseData);
+
+      if (response.statusCode == 200 && body["status_code"] == 200) {
+        Get.snackbar(
+          "Avatar Updated Successfully",
+          "",
+          colorText: Colors.green.shade700,
+        );
+        return true;
+      }
+
+      Get.snackbar(
+        "Failed to update avatar",
+        "",
+        colorText: Colors.red.shade700,
+      );
+      return false;
+
+    } catch (e) {
+      print('Upload error: $e');
+      Get.snackbar(
+        "Something went wrong",
+        "",
+        colorText: Colors.red.shade700,
+      );
+      return false;
+    }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
