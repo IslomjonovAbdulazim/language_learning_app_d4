@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:language_learning_app_d4/models/profile_models.dart';
 import 'package:language_learning_app_d4/providers/profile_provider.dart';
@@ -69,7 +71,20 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: [
                     CupertinoButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () async {
+                        final file = await ImagePicker().pickImage(source: ImageSource.gallery);
+                        if (file != null) {
+                          isLoading = true;
+                          setState(() {});
+                          final res = await ProfileProvider.uploadAvatar(file.path);
+                          if (res) {
+                            load();
+                          } else {
+                            isLoading = false;
+                            setState(() {});
+                          }
+                        }
+                      },
                       child: Container(
                         height: 120,
                         width: 120,
@@ -81,8 +96,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             ? Icon(CupertinoIcons.camera, size: 32)
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
-                                child: Image.network(
-                                  ApiConstants.baseUrl + profile!.avatarUrl!,
+                                child: CachedNetworkImage(
+                                  imageUrl: ApiConstants.baseUrl + profile!.avatarUrl!,
                                   fit: BoxFit.cover,
                                 ),
                               ),

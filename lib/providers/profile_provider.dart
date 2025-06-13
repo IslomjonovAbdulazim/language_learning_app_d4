@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -107,18 +108,41 @@ class ProfileProvider {
     return false;
   }
 
-  static Future<bool> uploadAvatar(String imageFile) async {
+  static Future<bool> uploadAvatar(dynamic imageFile) async {
     try {
       final uri = Uri.parse('${ApiConstants.baseUrl}/auth/avatar');
       final request = http.MultipartRequest('POST', uri);
 
       request.headers['Authorization'] = 'Bearer ${AuthService.token}';
 
-      request.files.add(await http.MultipartFile.fromPath(
-        'file',
-        imageFile,
-        contentType: MediaType('image', 'jpeg'),
-      ));
+      if (kIsWeb) {
+        // Web implementation - handle both Uint8List and blob URL
+        if (imageFile is String) {
+          // If it's a blob URL, fetch the bytes
+          final response = await http.get(Uri.parse(imageFile));
+          request.files.add(http.MultipartFile.fromBytes(
+            'file',
+            response.bodyBytes,
+            filename: 'avatar.jpg',
+            contentType: MediaType('image', 'jpeg'),
+          ));
+        } else {
+          // If it's already Uint8List
+          request.files.add(http.MultipartFile.fromBytes(
+            'file',
+            imageFile as Uint8List,
+            filename: 'avatar.jpg',
+            contentType: MediaType('image', 'jpeg'),
+          ));
+        }
+      } else {
+        // Mobile implementation
+        request.files.add(await http.MultipartFile.fromPath(
+          'file',
+          imageFile as String,
+          contentType: MediaType('image', 'jpeg'),
+        ));
+      }
 
       final response = await request.send();
       final responseData = await response.stream.bytesToString();
