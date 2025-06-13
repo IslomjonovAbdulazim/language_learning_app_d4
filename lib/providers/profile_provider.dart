@@ -1,9 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+
 import '../models/profile_models.dart';
 import "../services/auth_service.dart";
 import '../utils/api_constants.dart';
-import 'package:http/http.dart' as http;
 
 class ProfileProvider {
   static Future<ProfileModel?> getProfile() async {
@@ -20,5 +23,32 @@ class ProfileProvider {
       return model;
     }
     return null;
+  }
+
+  static Future<bool> updateName(String name) async {
+    final uri = Uri.parse(ApiConstants.profile);
+    final response = await http.put(
+      uri,
+      headers: {
+        "Authorization": "Bearer ${AuthService.token}",
+        "Content-Type": "application/json",
+      },
+      body: jsonEncode({"name": name}),
+    );
+    final body = jsonDecode(response.body);
+    if (response.statusCode == 200 && body["status_code"] == 200) {
+      Get.snackbar(
+        "Name Changed Successfully",
+        "",
+        colorText: Colors.green.shade700,
+      );
+      return true;
+    }
+    Get.snackbar(
+      "Something went wrong",
+      "",
+      colorText: Colors.red.shade700,
+    );
+    return false;
   }
 }
