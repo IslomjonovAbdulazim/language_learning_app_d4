@@ -68,15 +68,18 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 )
               : ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   children: [
                     CupertinoButton(
                       padding: EdgeInsets.zero,
                       onPressed: () async {
-                        final file = await ImagePicker().pickImage(source: ImageSource.gallery);
+                        final file = await ImagePicker()
+                            .pickImage(source: ImageSource.gallery);
                         if (file != null) {
                           isLoading = true;
                           setState(() {});
-                          final res = await ProfileProvider.uploadAvatar(file.path);
+                          final res =
+                              await ProfileProvider.uploadAvatar(file.path);
                           if (res) {
                             load();
                           } else {
@@ -97,7 +100,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
                                 child: CachedNetworkImage(
-                                  imageUrl: ApiConstants.baseUrl + profile!.avatarUrl!,
+                                  imageUrl: ApiConstants.baseUrl +
+                                      profile!.avatarUrl!,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -163,6 +167,30 @@ class _ProfilePageState extends State<ProfilePage> {
                     // name
                     // username
                     // bio (maxLines: 3)
+                    SizedBox(height: 10),
+                    CupertinoButton(
+                      color: Colors.grey.shade100,
+                      onPressed: () {},
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              profile!.name,
+                              style: GoogleFonts.poppins(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "NAME",
+                            style: GoogleFonts.poppins(
+                              fontSize: 12,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
     );
