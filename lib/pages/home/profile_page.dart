@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:language_learning_app_d4/models/profile_models.dart';
+import 'package:language_learning_app_d4/pages/profile/profile_bio_page.dart';
 import 'package:language_learning_app_d4/pages/profile/profile_name_page.dart';
 import 'package:language_learning_app_d4/providers/profile_provider.dart';
 import 'package:language_learning_app_d4/utils/api_constants.dart';
@@ -183,7 +184,39 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           Expanded(
                             child: Text(
-                              profile!.name * 1090,
+                              profile!.name,
+                              style: GoogleFonts.poppins(
+                                color: Colors.black,
+                              ),
+                              maxLines: 2,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            "NAME",
+                            style: GoogleFonts.poppins(
+                              fontSize: 12,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    CupertinoButton(
+                      color: Colors.grey.shade100,
+                      onPressed: () async {
+                        final res = await Get.to(ProfileBioPage(bio: profile!.bio ?? ""));
+                        if (res != null) {
+                          profile!.name = res.toString();
+                          setState(() {});
+                        }
+                      },
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              profile!.name,
                               style: GoogleFonts.poppins(
                                 color: Colors.black,
                               ),
