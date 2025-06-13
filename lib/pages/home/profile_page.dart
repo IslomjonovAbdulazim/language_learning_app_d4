@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:language_learning_app_d4/models/profile_models.dart';
+import 'package:language_learning_app_d4/pages/profile/profile_name_page.dart';
 import 'package:language_learning_app_d4/providers/profile_provider.dart';
 import 'package:language_learning_app_d4/utils/api_constants.dart';
 
@@ -170,17 +172,25 @@ class _ProfilePageState extends State<ProfilePage> {
                     SizedBox(height: 10),
                     CupertinoButton(
                       color: Colors.grey.shade100,
-                      onPressed: () {},
+                      onPressed: () async {
+                        final res = await Get.to(ProfileNamePage(name: profile!.name));
+                        if (res != null) {
+                          profile!.name = res.toString();
+                          setState(() {});
+                        }
+                      },
                       child: Row(
                         children: [
                           Expanded(
                             child: Text(
-                              profile!.name,
+                              profile!.name * 1090,
                               style: GoogleFonts.poppins(
                                 color: Colors.black,
                               ),
+                              maxLines: 2,
                             ),
                           ),
+                          SizedBox(width: 5),
                           Text(
                             "NAME",
                             style: GoogleFonts.poppins(
