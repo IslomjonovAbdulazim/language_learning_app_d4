@@ -208,7 +208,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       onPressed: () async {
                         final res = await Get.to(ProfileBioPage(bio: profile!.bio ?? ""));
                         if (res != null) {
-                          profile!.name = res.toString();
+                          profile!.bio = res.toString();
                           setState(() {});
                         }
                       },
@@ -216,7 +216,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           Expanded(
                             child: Text(
-                              profile!.name,
+                              profile!.bio ?? "No Bio",
                               style: GoogleFonts.poppins(
                                 color: Colors.black,
                               ),
@@ -225,7 +225,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           SizedBox(width: 5),
                           Text(
-                            "NAME",
+                            "BIO",
                             style: GoogleFonts.poppins(
                               fontSize: 12,
                               color: Colors.black,
