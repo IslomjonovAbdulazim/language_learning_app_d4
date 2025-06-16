@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:language_learning_app_d4/widgets/button_widget.dart';
+import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
 
 import '../../models/folder_model.dart';
 
@@ -48,8 +50,29 @@ class _CreateFolderPageState extends State<CreateFolderPage> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(20),
-          child: Column(
-            children: [],
+          child: Center(
+            child: Column(
+              children: [
+                TextFieldWidget(
+                  hint: "Title",
+                  focus: FocusNode(),
+                  controller: titleController,
+                ),
+                SizedBox(height: 10),
+                TextFieldWidget(
+                  hint: "Description",
+                  focus: FocusNode(),
+                  controller: descriptionController,
+                ),
+                SizedBox(height: 20),
+                isLoading
+                    ? CircularProgressIndicator(color: Color(0xff3461FD))
+                    : ButtonWidget(
+                        onTap: () {},
+                        text: "Save",
+                      ),
+              ],
+            ),
           ),
         ),
       ),
