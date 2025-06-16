@@ -67,7 +67,7 @@ class _ProfileNamePageState extends State<ProfileNamePage> {
                           setState(() {});
                           final res = await ProfileProvider.updateName(text);
                           if (res) {
-                            Get.back();
+                            Navigator.pop(context, text);
                           } else {
                             isLoading = false;
                             setState(() {});

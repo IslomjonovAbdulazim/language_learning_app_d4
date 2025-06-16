@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:language_learning_app_d4/models/profile_models.dart';
 import 'package:language_learning_app_d4/pages/profile/profile_bio_page.dart';
 import 'package:language_learning_app_d4/pages/profile/profile_name_page.dart';
+import 'package:language_learning_app_d4/pages/profile/profile_username_page.dart';
 import 'package:language_learning_app_d4/providers/profile_provider.dart';
 import 'package:language_learning_app_d4/utils/api_constants.dart';
 
@@ -206,7 +207,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     CupertinoButton(
                       color: Colors.grey.shade100,
                       onPressed: () async {
-                        final res = await Get.to(ProfileBioPage(bio: profile!.bio ?? ""));
+                        final res = await Get.to(ProfileBioPage(name: profile!.bio ?? ""));
                         if (res != null) {
                           profile!.bio = res.toString();
                           setState(() {});
@@ -226,6 +227,38 @@ class _ProfilePageState extends State<ProfilePage> {
                           SizedBox(width: 5),
                           Text(
                             "BIO",
+                            style: GoogleFonts.poppins(
+                              fontSize: 12,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    CupertinoButton(
+                      color: Colors.grey.shade100,
+                      onPressed: () async {
+                        final res = await Get.to(ProfileUsernamePage(name: profile!.username ?? ""));
+                        if (res != null) {
+                          profile!.username = res.toString();
+                          setState(() {});
+                        }
+                      },
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              profile!.username ?? "No Username",
+                              style: GoogleFonts.poppins(
+                                color: Colors.black,
+                              ),
+                              maxLines: 2,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            "Username",
                             style: GoogleFonts.poppins(
                               fontSize: 12,
                               color: Colors.black,
