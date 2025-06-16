@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../models/folder_model.dart';
 
 class CreateFolderPage extends StatefulWidget {
   final FolderModel? folder;
+
   const CreateFolderPage({super.key, this.folder});
 
   @override
@@ -30,6 +33,26 @@ class _CreateFolderPageState extends State<CreateFolderPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Text(
+          "Folder Details",
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsetsGeometry.all(20),
+          child: Column(
+            children: [],
+          ),
+        ),
+      ),
+    );
   }
 }

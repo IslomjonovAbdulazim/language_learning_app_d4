@@ -17,7 +17,7 @@ class FolderProvider {
     );
     final body = jsonDecode(response.body);
     if (response.statusCode == 200 && body["status_code"] == 200) {
-      final jsonList = List.from(body["data"]);
+      final jsonList = List.from(body["data"]["folders"]);
       return jsonList.map((json) => FolderModel.fromJson(json)).toList();
     } else {
       return [];
