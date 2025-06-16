@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:language_learning_app_d4/pages/auth/login_page.dart';
+import 'package:language_learning_app_d4/services/auth_service.dart';
 
 import '../../models/profile_models.dart';
 import '../../providers/profile_provider.dart';
@@ -276,7 +278,30 @@ class _ProfilePageState extends State<ProfilePage> {
                     SizedBox(height: 10),
                     CupertinoButton(
                       color: Colors.red,
-                      onPressed: () {},
+                      onPressed: () async {
+                        Get.dialog(
+                          CupertinoAlertDialog(
+                            title: Text("Do you want to logout?"),
+                            actions: [
+                              CupertinoDialogAction(
+                                isDestructiveAction: true,
+                                child: Text("Logout"),
+                                onPressed: () async {
+                                  await AuthService.logout();
+                                  Get.offAll(LoginPage());
+                                },
+                              ),
+                              CupertinoDialogAction(
+                                isDestructiveAction: false,
+                                child: Text("Cancel"),
+                                onPressed: () {
+                                  Get.back();
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                       child: Center(
                         child: Text(
                           "Logout",
