@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:language_learning_app_d4/providers/folder_provider.dart';
 import 'package:language_learning_app_d4/widgets/button_widget.dart';
 import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
 
@@ -68,7 +70,37 @@ class _CreateFolderPageState extends State<CreateFolderPage> {
                 isLoading
                     ? CircularProgressIndicator(color: Color(0xff3461FD))
                     : ButtonWidget(
-                        onTap: () {},
+                        onTap: () async {
+                          final title = titleController.text.trim();
+                          final desc = descriptionController.text.trim();
+                          if (title.length < 3 ||
+                              desc.length < 5 ||
+                              title.length > 40 ||
+                              desc.length > 120) {
+                            Get.closeAllSnackbars();
+                            Get.snackbar(
+                              "Wrongs Lengths",
+                              "Title (3:40), Description (5:120)",
+                              colorText: Colors.red.shade700,
+                            );
+                          } else {
+                            isLoading = true;
+                            setState(() {});
+                            final model = FolderModel(
+                              id: widget.folder?.id ?? -1,
+                              title: title,
+                              description: desc,
+                            );
+                            if (widget.folder == null) {
+                              await FolderProvider.createFolder(model);
+                            } else {
+                              await FolderProvider.updateFolder(model);
+                            }
+                            Get.back();
+                            isLoading = false;
+                            setState(() {});
+                          }
+                        },
                         text: "Save",
                       ),
               ],

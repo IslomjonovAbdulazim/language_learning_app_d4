@@ -42,7 +42,7 @@ class FolderProvider {
   }
 
   static Future<bool> updateFolder(FolderModel folder) async {
-    final uri = Uri.parse(ApiConstants.folder + "/" + folder.id.toString());
+    final uri = Uri.parse(ApiConstants.folder + folder.id.toString());
     final response = await http.put(
       uri,
       body: jsonEncode(folder.toJson()),
