@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:language_learning_app_d4/providers/profile_provider.dart';
-import 'package:language_learning_app_d4/widgets/button_widget.dart';
-import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
+import '../../providers/profile_provider.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/textfield_widget.dart';
 
 class ProfileNamePage extends StatefulWidget {
   final String name;

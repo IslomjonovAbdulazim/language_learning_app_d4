@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:language_learning_app_d4/models/profile_models.dart';
-import 'package:language_learning_app_d4/pages/profile/profile_bio_page.dart';
-import 'package:language_learning_app_d4/pages/profile/profile_name_page.dart';
-import 'package:language_learning_app_d4/pages/profile/profile_username_page.dart';
-import 'package:language_learning_app_d4/providers/profile_provider.dart';
-import 'package:language_learning_app_d4/utils/api_constants.dart';
+import '../../models/profile_models.dart';
+import '../profile/profile_bio_page.dart';
+import '../profile/profile_name_page.dart';
+import '../profile/profile_username_page.dart';
+import '../../providers/profile_provider.dart';
+import '../../utils/api_constants.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -267,6 +267,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
+
                   ],
                 ),
     );
