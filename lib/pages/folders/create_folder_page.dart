@@ -47,7 +47,7 @@ class _CreateFolderPageState extends State<CreateFolderPage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsetsGeometry.all(20),
+          padding: EdgeInsets.all(20),
           child: Column(
             children: [],
           ),
