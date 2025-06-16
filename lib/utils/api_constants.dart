@@ -6,4 +6,8 @@ class ApiConstants {
   static const profile = "$baseUrl/auth/profile";
   static const avatar = "$baseUrl/auth/avatar";
   static const profileStats = "$baseUrl/auth/stats";
+
+  // Folder
+  static const myFolder = "$baseUrl/folders/my";
+  static const folder = "$baseUrl/folders/";
 }
