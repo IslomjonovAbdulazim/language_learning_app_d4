@@ -43,9 +43,25 @@ class FolderProvider {
 
   static Future<bool> updateFolder(FolderModel folder) async {
     final uri = Uri.parse(ApiConstants.folder + "/" + folder.id.toString());
-    final response = await http.post(
+    final response = await http.put(
       uri,
       body: jsonEncode(folder.toJson()),
+      headers: {
+        "Authorization": "Bearer ${AuthService.token}",
+        "Content-Type": "application/json",
+      },
+    );
+    final body = jsonDecode(response.body);
+    if (response.statusCode == 200 && body["status_code"] == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  static Future<bool> deleteFolder(FolderModel folder) async {
+    final uri = Uri.parse(ApiConstants.folder + "/" + folder.id.toString());
+    final response = await http.delete(
+      uri,
       headers: {
         "Authorization": "Bearer ${AuthService.token}",
         "Content-Type": "application/json",
