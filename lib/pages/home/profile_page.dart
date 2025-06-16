@@ -5,12 +5,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+
 import '../../models/profile_models.dart';
+import '../../providers/profile_provider.dart';
+import '../../utils/api_constants.dart';
 import '../profile/profile_bio_page.dart';
 import '../profile/profile_name_page.dart';
 import '../profile/profile_username_page.dart';
-import '../../providers/profile_provider.dart';
-import '../../utils/api_constants.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -175,7 +176,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     CupertinoButton(
                       color: Colors.grey.shade100,
                       onPressed: () async {
-                        final res = await Get.to(ProfileNamePage(name: profile!.name));
+                        final res =
+                            await Get.to(ProfileNamePage(name: profile!.name));
                         if (res != null) {
                           profile!.name = res.toString();
                           setState(() {});
@@ -207,7 +209,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     CupertinoButton(
                       color: Colors.grey.shade100,
                       onPressed: () async {
-                        final res = await Get.to(ProfileBioPage(name: profile!.bio ?? ""));
+                        final res = await Get.to(
+                            ProfileBioPage(name: profile!.bio ?? ""));
                         if (res != null) {
                           profile!.bio = res.toString();
                           setState(() {});
@@ -239,7 +242,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     CupertinoButton(
                       color: Colors.grey.shade100,
                       onPressed: () async {
-                        final res = await Get.to(ProfileUsernamePage(name: profile!.username ?? ""));
+                        final res = await Get.to(
+                            ProfileUsernamePage(name: profile!.username ?? ""));
                         if (res != null) {
                           profile!.username = res.toString();
                           setState(() {});
@@ -267,7 +271,22 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
-
+                    SizedBox(height: 10),
+                    Divider(),
+                    SizedBox(height: 10),
+                    CupertinoButton(
+                      color: Colors.red,
+                      onPressed: () {},
+                      child: Center(
+                        child: Text(
+                          "Logout",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
     );
