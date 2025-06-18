@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:language_learning_app_d4/utils/api_constants.dart';
 
@@ -72,5 +74,34 @@ class FolderProvider {
       return true;
     }
     return false;
+  }
+
+  static Future<bool> copyFolder(String code) async {
+    final uri = Uri.parse(ApiConstants.copyFolder);
+    final response = await http.post(
+      uri,
+      headers: {
+        "Authorization": "Bearer ${AuthService.token}",
+        "Content-Type": "application/json",
+      },
+      body: jsonEncode({"share_code": code}),
+    );
+    final body = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+        "Successfully Copied",
+        "You Copied Folder! #$code",
+        colorText: Colors.green.shade700,
+      );
+      return true;
+    } else {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+        body["detail"] ?? "Something went wrong",
+        "Something went wrong",
+      );
+      return false;
+    }
   }
 }

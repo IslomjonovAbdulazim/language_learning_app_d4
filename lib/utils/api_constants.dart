@@ -10,4 +10,5 @@ class ApiConstants {
   // Folder
   static const myFolder = "$baseUrl/folders/my";
   static const folder = "$baseUrl/folders/";
+  static const copyFolder = "$baseUrl/folders/copy";
 }

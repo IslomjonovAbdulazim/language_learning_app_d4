@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:language_learning_app_d4/providers/folder_provider.dart';
 import 'package:language_learning_app_d4/widgets/button_widget.dart';
 import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
 
@@ -46,7 +48,20 @@ class _CopyFolderPageState extends State<CopyFolderPage> {
                       ),
                     )
                   : ButtonWidget(
-                      onTap: () {},
+                      onTap: () async {
+                        final code = controller.text.trim();
+                        if (code.length < 5 || code.length > 7) {
+                          return;
+                        }
+                        isLoading = true;
+                        setState(() {});
+                        final res = await FolderProvider.copyFolder(code);
+                        isLoading = false;
+                        setState(() {});
+                        if (res) {
+                          Get.back();
+                        }
+                      },
                       text: "Copy Now",
                     ),
             ],
