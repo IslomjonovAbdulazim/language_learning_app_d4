@@ -171,6 +171,33 @@ class _HomePageState extends State<HomePage> {
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
+                                Divider(thickness: 0.2),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Share Code",
+                                      style: GoogleFonts.poppins(fontSize: 12),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      model.shareCode,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      model.shareStatus,
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w500,
+                                        color: model.shareStatus == "Active"
+                                            ? Colors.green.shade700
+                                            : Colors.red.shade700,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ),

@@ -57,4 +57,9 @@ class FolderModel {
         "updated_at": updatedAt.toIso8601String(),
         "shared_at": sharedAt.toIso8601String(),
       };
+
+  String get shareStatus {
+    if (!isShareable) return "Not shareable";
+    return isShareValid ? "Active" : "Invalid";
+  }
 }
