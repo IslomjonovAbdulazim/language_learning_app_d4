@@ -43,7 +43,7 @@ class _CreateFolderPageState extends State<CreateFolderPage> {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          "Folder Details",
+          "Edit Folder",
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w500,
           ),

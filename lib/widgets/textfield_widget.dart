@@ -16,6 +16,7 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      autocorrect: false,
       controller: controller,
       focusNode: focus,
       onTapOutside: (value) => focus.unfocus(),

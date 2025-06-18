@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       final model = folders[index];
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Slidable(
                           endActionPane: ActionPane(
                             motion: ScrollMotion(),
@@ -150,62 +150,87 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ],
                           ),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xffF5F9FE),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  model.title,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    height: 1,
+                          child: CupertinoButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () async {},
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 20,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xffF5F9FE),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    model.title,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      height: 1,
+                                      color: Colors.black,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                Text(
-                                  model.description,
-                                  style: GoogleFonts.poppins(),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                Divider(thickness: 0.2),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Share Code",
-                                      style: GoogleFonts.poppins(fontSize: 12),
+                                  Text(
+                                    model.description,
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.black,
                                     ),
-                                    SizedBox(width: 5),
-                                    Text(
-                                      model.shareCode,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Divider(thickness: 0.2),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Share Code",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 12,
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      model.shareStatus,
-                                      style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
-                                        color: model.shareStatus == "Active"
-                                            ? Colors.green.shade700
-                                            : Colors.red.shade700,
+                                      SizedBox(width: 5),
+                                      Text(
+                                        model.shareCode,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      Spacer(),
+                                      Text(
+                                        model.shareStatus,
+                                        style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                          color: model.shareStatus == "Active"
+                                              ? Colors.green.shade700
+                                              : Colors.red.shade700,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Divider(thickness: 0.2),
+                                  Row(
+                                    children: [
+                                      _Item(
+                                          value: model.totalWords,
+                                          title: "Words"),
+                                      _Item(
+                                          value: model.totalCopies,
+                                          title: "Copies"),
+                                      _Item(
+                                          value: model.totalQuizzes,
+                                          title: "Quizzes"),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -230,19 +255,24 @@ class _Item extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
+          SizedBox(height: 8),
           Text(
             "$value",
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w600,
+              color: Colors.black,
+              height: 1,
             ),
           ),
+          SizedBox(height: 4),
           Text(
             title,
             style: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: Colors.grey.shade700,
+              fontSize: 12,
+              fontWeight: FontWeight.w300,
+              color: Colors.grey.shade600,
+              height: 1,
             ),
           ),
         ],
