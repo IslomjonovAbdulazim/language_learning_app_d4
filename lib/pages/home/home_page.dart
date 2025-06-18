@@ -7,6 +7,7 @@ import 'package:language_learning_app_d4/models/folder_model.dart';
 import 'package:language_learning_app_d4/pages/folders/create_folder_page.dart';
 import 'package:language_learning_app_d4/pages/home/profile_page.dart';
 import 'package:language_learning_app_d4/providers/folder_provider.dart';
+import 'package:language_learning_app_d4/widgets/button_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -75,15 +76,15 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 Expanded(
-                  child: CupertinoButton(
-                    color: Colors.yellow,
-                    onPressed: () async {
+                  child: ButtonWidget(
+                    onTap: () async {
                       await Get.to(CreateFolderPage());
                       load();
                     },
-                    child: Text("Create"),
+                    text: "Create",
                   ),
                 ),
+
               ],
             ),
             SizedBox(height: 10),
