@@ -59,7 +59,7 @@ class FolderProvider {
   }
 
   static Future<bool> deleteFolder(FolderModel folder) async {
-    final uri = Uri.parse(ApiConstants.folder + "/" + folder.id.toString());
+    final uri = Uri.parse(ApiConstants.folder + folder.id.toString());
     final response = await http.delete(
       uri,
       headers: {
