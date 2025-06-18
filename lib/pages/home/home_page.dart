@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:language_learning_app_d4/models/folder_model.dart';
+import 'package:language_learning_app_d4/pages/folders/copy_folder_page.dart';
 import 'package:language_learning_app_d4/pages/folders/create_folder_page.dart';
 import 'package:language_learning_app_d4/pages/home/profile_page.dart';
 import 'package:language_learning_app_d4/providers/folder_provider.dart';
@@ -84,7 +85,16 @@ class _HomePageState extends State<HomePage> {
                     text: "Create",
                   ),
                 ),
-
+                SizedBox(width: 10),
+                Expanded(
+                  child: ButtonWidget(
+                    text: "Copy",
+                    onTap: () async {
+                      await Get.to(CopyFolderPage());
+                      load();
+                    },
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 10),
@@ -124,7 +134,8 @@ class _HomePageState extends State<HomePage> {
                                 child: CupertinoButton(
                                   color: Colors.yellow,
                                   onPressed: () async {
-                                    await Get.to(CreateFolderPage(folder: model));
+                                    await Get.to(
+                                        CreateFolderPage(folder: model));
                                     load();
                                   },
                                   child: Icon(Icons.edit),
@@ -132,10 +143,36 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ],
                           ),
-                          child: ListTile(
-                            title: Text(model.title),
-                            subtitle: Text(model.description),
-
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 10,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0xffF5F9FE),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  model.title,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  model.description,
+                                  style: GoogleFonts.poppins(),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
