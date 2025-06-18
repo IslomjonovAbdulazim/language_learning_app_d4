@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                         child: Slidable(
                           endActionPane: ActionPane(
                             motion: ScrollMotion(),
-                            extentRatio: 0.5,
+                            extentRatio: 0.4,
                             children: [
                               Expanded(
                                 child: CupertinoButton(
@@ -134,6 +134,7 @@ class _HomePageState extends State<HomePage> {
                           child: ListTile(
                             title: Text(model.title),
                             subtitle: Text(model.description),
+
                           ),
                         ),
                       );
