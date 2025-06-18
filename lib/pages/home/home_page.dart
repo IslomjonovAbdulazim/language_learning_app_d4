@@ -117,6 +117,7 @@ class _HomePageState extends State<HomePage> {
                             motion: ScrollMotion(),
                             extentRatio: 0.4,
                             children: [
+                              SizedBox(width: 10),
                               Expanded(
                                 child: CupertinoButton(
                                   color: Colors.red,
@@ -126,7 +127,10 @@ class _HomePageState extends State<HomePage> {
                                     await FolderProvider.deleteFolder(model);
                                     load();
                                   },
-                                  child: Icon(CupertinoIcons.delete),
+                                  child: Icon(
+                                    CupertinoIcons.delete,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                               SizedBox(width: 5),
@@ -138,7 +142,10 @@ class _HomePageState extends State<HomePage> {
                                         CreateFolderPage(folder: model));
                                     load();
                                   },
-                                  child: Icon(Icons.edit),
+                                  child: Icon(
+                                    Icons.edit,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ],
