@@ -86,38 +86,44 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             SizedBox(height: 10),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: folders.length,
-              itemBuilder: (context, index) {
-                final model = folders[index];
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: ListTile(
-                    title: Text(model.title),
-                    subtitle: Text(model.description),
-                    leading: CupertinoButton(
-                      color: Colors.red,
-                      onPressed: () async {
-                        isLoading = true;
-                        setState(() {});
-                        await FolderProvider.deleteFolder(model);
-                        load();
-                      },
-                      child: Icon(CupertinoIcons.delete),
+            isLoading
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: Color(0xff3461FD),
                     ),
-                    trailing: CupertinoButton(
-                      onPressed: () async {
-                        await Get.to(CreateFolderPage(folder: model));
-                        load();
-                      },
-                      child: Icon(Icons.edit),
-                    ),
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: folders.length,
+                    itemBuilder: (context, index) {
+                      final model = folders[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: ListTile(
+                          title: Text(model.title),
+                          subtitle: Text(model.description),
+                          leading: CupertinoButton(
+                            color: Colors.red,
+                            onPressed: () async {
+                              isLoading = true;
+                              setState(() {});
+                              await FolderProvider.deleteFolder(model);
+                              load();
+                            },
+                            child: Icon(CupertinoIcons.delete),
+                          ),
+                          trailing: CupertinoButton(
+                            onPressed: () async {
+                              await Get.to(CreateFolderPage(folder: model));
+                              load();
+                            },
+                            child: Icon(Icons.edit),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ],
         ),
       ),
