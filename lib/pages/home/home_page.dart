@@ -224,7 +224,19 @@ class _Item extends StatelessWidget {
       child: Column(
         children: [
           Text(
+            "$value",
+            style: GoogleFonts.poppins(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          Text(
             title,
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey.shade700,
+            ),
           ),
         ],
       ),
