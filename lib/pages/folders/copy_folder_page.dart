@@ -59,7 +59,7 @@ class _CopyFolderPageState extends State<CopyFolderPage> {
                         isLoading = false;
                         setState(() {});
                         if (res) {
-                          Get.back();
+                          Navigator.pop(context);
                         }
                       },
                       text: "Copy Now",

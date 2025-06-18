@@ -9,7 +9,7 @@ class FolderModel {
   late int totalCopies;
   late int totalQuizzes;
   late DateTime createdAt;
-  late DateTime updatedAt;
+  late DateTime? updatedAt;
   late DateTime sharedAt;
 
   FolderModel({
@@ -39,7 +39,8 @@ class FolderModel {
     totalCopies = json["total_copies"];
     totalQuizzes = json["total_quizzes"];
     createdAt = DateTime.parse(json["created_at"]);
-    updatedAt = DateTime.parse(json["updated_at"]);
+    updatedAt =
+        json["updated_at"] != null ? DateTime.parse(json["updated_at"]) : null;
     sharedAt = DateTime.parse(json["shared_at"]);
   }
 
@@ -54,7 +55,7 @@ class FolderModel {
         "total_copies": totalCopies,
         "total_quizzes": totalQuizzes,
         "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
         "shared_at": sharedAt.toIso8601String(),
       };
 
