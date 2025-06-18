@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:language_learning_app_d4/models/folder_model.dart';
@@ -100,25 +101,39 @@ class _HomePageState extends State<HomePage> {
                       final model = folders[index];
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 4),
-                        child: ListTile(
-                          title: Text(model.title),
-                          subtitle: Text(model.description),
-                          leading: CupertinoButton(
-                            color: Colors.red,
-                            onPressed: () async {
-                              isLoading = true;
-                              setState(() {});
-                              await FolderProvider.deleteFolder(model);
-                              load();
-                            },
-                            child: Icon(CupertinoIcons.delete),
+                        child: Slidable(
+                          endActionPane: ActionPane(
+                            motion: ScrollMotion(),
+                            extentRatio: 0.5,
+                            children: [
+                              Expanded(
+                                child: CupertinoButton(
+                                  color: Colors.red,
+                                  onPressed: () async {
+                                    isLoading = true;
+                                    setState(() {});
+                                    await FolderProvider.deleteFolder(model);
+                                    load();
+                                  },
+                                  child: Icon(CupertinoIcons.delete),
+                                ),
+                              ),
+                              SizedBox(width: 5),
+                              Expanded(
+                                child: CupertinoButton(
+                                  color: Colors.yellow,
+                                  onPressed: () async {
+                                    await Get.to(CreateFolderPage(folder: model));
+                                    load();
+                                  },
+                                  child: Icon(Icons.edit),
+                                ),
+                              ),
+                            ],
                           ),
-                          trailing: CupertinoButton(
-                            onPressed: () async {
-                              await Get.to(CreateFolderPage(folder: model));
-                              load();
-                            },
-                            child: Icon(Icons.edit),
+                          child: ListTile(
+                            title: Text(model.title),
+                            subtitle: Text(model.description),
                           ),
                         ),
                       );
