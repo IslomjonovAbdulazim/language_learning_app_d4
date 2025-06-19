@@ -65,12 +65,37 @@ class _ProfilePageState extends State<ProfilePage> {
             )
           : profile == null
               ? Center(
-                  child: Text(
-                    "Error",
-                    style: GoogleFonts.poppins(
-                      color: Colors.red,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 25,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Error",
+                          style: GoogleFonts.poppins(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 25,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        CupertinoButton(
+                          color: Colors.red,
+                          onPressed: () async {
+                            await AuthService.logout();
+                            Get.offAll(LoginPage());
+                          },
+                          child: Center(
+                            child: Text(
+                              "Logout",
+                              style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 )
@@ -264,7 +289,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           SizedBox(width: 5),
                           Text(
-                            "Username",
+                            "USERNAME",
                             style: GoogleFonts.poppins(
                               fontSize: 12,
                               color: Colors.black,

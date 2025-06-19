@@ -180,6 +180,8 @@ class _HomePageState extends State<HomePage> {
                                     model.description,
                                     style: GoogleFonts.poppins(
                                       color: Colors.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
                                     ),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
@@ -188,31 +190,39 @@ class _HomePageState extends State<HomePage> {
                                   Row(
                                     children: [
                                       Text(
-                                        "Share Code",
+                                        model.isOwner ? "Share Code" : "Owner",
                                         style: GoogleFonts.poppins(
                                           fontSize: 12,
                                           color: Colors.black,
                                         ),
                                       ),
                                       SizedBox(width: 5),
-                                      Text(
-                                        model.shareCode,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black,
+                                      Expanded(
+                                        child: Text(
+                                          model.isOwner
+                                              ? model.shareCode ?? "No Code"
+                                              : model.owner.name,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        model.shareStatus,
-                                        style: GoogleFonts.poppins(
-                                          fontWeight: FontWeight.w500,
-                                          color: model.shareStatus == "Active"
-                                              ? Colors.green.shade700
-                                              : Colors.red.shade700,
-                                        ),
-                                      ),
+                                      model.isOwner
+                                          ? Text(
+                                              model.shareStatus,
+                                              style: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.w500,
+                                                color: model.shareStatus ==
+                                                        "Active"
+                                                    ? Colors.green.shade700
+                                                    : Colors.red.shade700,
+                                              ),
+                                            )
+                                          : SizedBox.shrink(),
                                     ],
                                   ),
                                   Divider(thickness: 0.2),
@@ -222,8 +232,8 @@ class _HomePageState extends State<HomePage> {
                                           value: model.totalWords,
                                           title: "Words"),
                                       _Item(
-                                          value: model.totalCopies,
-                                          title: "Copies"),
+                                          value: model.totalFollowers,
+                                          title: "Followers"),
                                       _Item(
                                           value: model.totalQuizzes,
                                           title: "Quizzes"),

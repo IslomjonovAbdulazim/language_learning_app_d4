@@ -61,7 +61,13 @@ class FolderProvider {
   }
 
   static Future<bool> deleteFolder(FolderModel folder) async {
-    final uri = Uri.parse(ApiConstants.folder + folder.id.toString());
+    String path = "";
+    if (folder.isOwner) {
+      path = ApiConstants.folder + folder.id.toString();
+    } else {
+      path = ApiConstants.unfollowFolder(folder.id);
+    }
+    final uri = Uri.parse(path);
     final response = await http.delete(
       uri,
       headers: {

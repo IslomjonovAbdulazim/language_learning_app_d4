@@ -10,7 +10,11 @@ class ApiConstants {
   // Folder
   static const myFolder = "$baseUrl/folders/my";
   static const folder = "$baseUrl/folders/";
-  static const copyFolder = "$baseUrl/folders/copy";
+  static const copyFolder = "$baseUrl/folders/follow";
+
+  static String unfollowFolder(int folderId) {
+    return "$baseUrl/folders/$folderId/unfollow";
+  }
 
   static String refreshShare(int folderId) {
     return "$baseUrl/folders/$folderId/refresh-share";
