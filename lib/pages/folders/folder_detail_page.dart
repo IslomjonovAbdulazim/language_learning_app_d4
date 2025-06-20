@@ -42,6 +42,7 @@ class _FolderDetailPageState extends State<FolderDetailPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         centerTitle: true,
         title: Text(
           "Folder Detail",
@@ -53,7 +54,7 @@ class _FolderDetailPageState extends State<FolderDetailPage> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(20),
-          child: Column(
+          child: ListView(
             children: [
               Container(
                 padding: EdgeInsets.symmetric(
