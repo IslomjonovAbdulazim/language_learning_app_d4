@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:language_learning_app_d4/models/folder_model.dart';
 import 'package:language_learning_app_d4/pages/folders/copy_folder_page.dart';
 import 'package:language_learning_app_d4/pages/folders/create_folder_page.dart';
+import 'package:language_learning_app_d4/pages/folders/folder_detail_page.dart';
 import 'package:language_learning_app_d4/pages/home/profile_page.dart';
 import 'package:language_learning_app_d4/providers/folder_provider.dart';
 import 'package:language_learning_app_d4/widgets/button_widget.dart';
@@ -43,9 +44,13 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
         leading: CupertinoButton(
-          onPressed: () {},
+          onPressed: () {
+            if (isLoading == false) {
+              load();
+            }
+          },
           child: Icon(
-            Icons.code,
+            Icons.refresh,
             size: 28,
             color: Colors.black,
           ),
@@ -115,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                         child: Slidable(
                           endActionPane: ActionPane(
                             motion: ScrollMotion(),
-                            extentRatio: 0.4,
+                            extentRatio: model.isOwner ? 0.4 : 0.2,
                             children: [
                               SizedBox(width: 10),
                               Expanded(
@@ -154,7 +159,10 @@ class _HomePageState extends State<HomePage> {
                           ),
                           child: CupertinoButton(
                             padding: EdgeInsets.zero,
-                            onPressed: () async {},
+                            onPressed: () async {
+                              await Get.to(FolderDetailPage(folder: model));
+                              load();
+                            },
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 20,
