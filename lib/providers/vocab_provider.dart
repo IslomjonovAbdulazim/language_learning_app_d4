@@ -35,7 +35,7 @@ class VocabProvider {
       },
     );
     final body = jsonDecode(response.body);
-    if (response.statusCode == 200 && body["status_code"] == 200) {
+    if (response.statusCode == 200 && body["status_code"] == 201) {
       return true;
     } else {
       return false;

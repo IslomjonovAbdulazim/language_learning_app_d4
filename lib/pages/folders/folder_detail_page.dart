@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -162,7 +163,8 @@ class _FolderDetailPageState extends State<FolderDetailPage> {
                         Expanded(
                           child: ButtonWidget(
                             onTap: () async {
-                              await Get.to(CreateVocabPage());
+                              await Get.to(
+                                  CreateVocabPage(folderId: widget.folder.id));
                               load();
                             },
                             text: "New Word",
@@ -190,31 +192,80 @@ class _FolderDetailPageState extends State<FolderDetailPage> {
                       itemCount: vocab.length,
                       itemBuilder: (context, index) {
                         final model = vocab[index];
-                        return Slidable(
-                          child: ListTile(
-                            tileColor: Color(0xffF5F9FE),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            title: Text(
-                              model.word,
-                              style: GoogleFonts.poppins(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                height: 1,
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: Slidable(
+                            endActionPane: widget.folder.isOwner == false
+                                ? null
+                                : ActionPane(
+                                    motion: ScrollMotion(),
+                                    extentRatio: 0.4,
+                                    children: [
+                                      SizedBox(width: 5),
+                                      Expanded(
+                                        child: CupertinoButton(
+                                          color: Colors.red,
+                                          onPressed: () async {
+                                            isLoading = true;
+                                            setState(() {});
+                                            await VocabProvider.delete(
+                                              widget.folder.id,
+                                              model,
+                                            );
+                                            load();
+                                          },
+                                          child: Icon(
+                                            CupertinoIcons.delete,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Expanded(
+                                        child: CupertinoButton(
+                                          color: Colors.yellow,
+                                          onPressed: () async {
+                                            await Get.to(CreateVocabPage(
+                                              folderId: widget.folder.id,
+                                              vocab: model,
+                                            ));
+                                            load();
+                                          },
+                                          child: Icon(
+                                            Icons.edit,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                            child: Card(
+                              child: ListTile(
+                                tileColor: Color(0xffF5F9FE),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                title: Text(
+                                  model.word,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                subtitle: Text(
+                                  model.translation,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                    height: 1,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            subtitle: Text(
-                              model.translation,
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                                height: 1,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         );
