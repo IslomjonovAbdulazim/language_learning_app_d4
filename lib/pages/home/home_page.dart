@@ -134,20 +134,22 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               SizedBox(width: 5),
-                              Expanded(
-                                child: CupertinoButton(
-                                  color: Colors.yellow,
-                                  onPressed: () async {
-                                    await Get.to(
-                                        CreateFolderPage(folder: model));
-                                    load();
-                                  },
-                                  child: Icon(
-                                    Icons.edit,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
+                              model.isOwner == false
+                                  ? SizedBox()
+                                  : Expanded(
+                                      child: CupertinoButton(
+                                        color: Colors.yellow,
+                                        onPressed: () async {
+                                          await Get.to(
+                                              CreateFolderPage(folder: model));
+                                          load();
+                                        },
+                                        child: Icon(
+                                          Icons.edit,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
                             ],
                           ),
                           child: CupertinoButton(
