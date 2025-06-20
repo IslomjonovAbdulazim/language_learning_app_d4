@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:language_learning_app_d4/models/folder_model.dart';
 import 'package:language_learning_app_d4/models/vocab_model.dart';
+import 'package:language_learning_app_d4/pages/folders/create_vocab_page.dart';
+import 'package:language_learning_app_d4/providers/folder_provider.dart';
 import 'package:language_learning_app_d4/providers/vocab_provider.dart';
+import 'package:language_learning_app_d4/widgets/button_widget.dart';
 
 class FolderDetailPage extends StatefulWidget {
   final FolderModel folder;
@@ -136,6 +141,84 @@ class _FolderDetailPageState extends State<FolderDetailPage> {
                   ],
                 ),
               ),
+              SizedBox(height: 20),
+              widget.folder.isOwner && isLoading == false
+                  ? Row(
+                      children: [
+                        Expanded(
+                          child: ButtonWidget(
+                            onTap: () async {
+                              isLoading = true;
+                              setState(() {});
+                              await FolderProvider.refreshShareCode(
+                                  widget.folder.id);
+                              load();
+                            },
+                            text: "Refresh",
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: ButtonWidget(
+                            onTap: () async {
+                              await Get.to(CreateVocabPage());
+                              load();
+                            },
+                            text: "New Word",
+                          ),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
+              SizedBox(height: 10),
+              ButtonWidget(
+                onTap: () {},
+                text: "Test",
+              ),
+              SizedBox(height: 5),
+              Divider(),
+              SizedBox(height: 10),
+              isLoading
+                  ? Center(
+                      child: CircularProgressIndicator(
+                      color: Color(0xff3461FD),
+                    ))
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: vocab.length,
+                      itemBuilder: (context, index) {
+                        final model = vocab[index];
+                        return Slidable(
+                          child: ListTile(
+                            tileColor: Color(0xffF5F9FE),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            title: Text(
+                              model.word,
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                height: 1,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            subtitle: Text(
+                              model.translation,
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w300,
+                                height: 1,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
             ],
           ),
         ),
