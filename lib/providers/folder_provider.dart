@@ -110,4 +110,22 @@ class FolderProvider {
       return false;
     }
   }
+
+  static Future<bool> refreshShareCode(int id) async {
+    final uri = Uri.parse(ApiConstants.refreshShare(id));
+    final response = await http.post(
+      uri,
+      body: jsonEncode({"folder_id": id}),
+      headers: {
+        "Authorization": "Bearer ${AuthService.token}",
+        "Content-Type": "application/json",
+      },
+    );
+    final body = jsonDecode(response.body);
+    if (response.statusCode == 200 && body["status_code"] == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
