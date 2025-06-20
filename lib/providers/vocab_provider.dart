@@ -62,7 +62,12 @@ class VocabProvider {
 
   static Future<bool> delete(int id, VocabModel vocab) async {
     final uri = Uri.parse("${ApiConstants.vocab(id)}/${vocab.id}");
-    final response = await http.delete(uri);
+    final response = await http.delete(
+      uri,
+      headers: {
+        "Authorization": "Bearer ${AuthService.token}",
+      },
+    );
     final body = jsonDecode(response.body);
     if (response.statusCode == 200 && body["status_code"] == 200) {
       return true;
