@@ -1,0 +1,128 @@
+start: 200 & 201
+{
+  "status_code": 201,
+  "is_success": true,
+  "details": "Quiz started successfully",
+  "data": {
+    "quiz_id": 5,
+    "folder_id": 4,
+    "folder_title": "azim 22",
+    "folder_owner": "azim",
+    "is_folder_owner": true,
+    "quiz_type": "definition",
+    "question_count": 4,
+    "current_question": 1,
+    "question": {
+      "type": "translation",
+      "text": "What is the Uzbek translation of 'word 2'?",
+      "word": "word 2"
+    }
+  }
+}
+
+answer
+{
+  "answer": "kitob"
+}
+{
+  "status_code": 200,
+  "is_success": true,
+  "details": "Answer submitted successfully",
+  "data": {
+    "is_correct": true,
+    "correct_answer": "kitob",
+    "quiz_completed": false,
+    "current_question": 2,
+    "total_questions": 4,
+    "next_question": {
+      "type": "translation",
+      "text": "What is the Uzbek translation of 'word 2'?",
+      "word": "word 2"
+    }
+  }
+}
+
+{
+  "status_code": 200,
+  "is_success": true,
+  "details": "Answer submitted successfully",
+  "data": {
+    "is_correct": true,
+    "correct_answer": "kitob",
+    "quiz_completed": true,
+    "final_score": 50,
+    "message": "Quiz completed! 🎉"
+  }
+}
+
+
+results
+{
+  "status_code": 200,
+  "is_success": true,
+  "details": "Quiz results retrieved successfully",
+  "data": {
+    "quiz_id": 6,
+    "folder_title": "azim 22",
+    "folder_owner": "azim",
+    "quiz_type": "definition",
+    "status": "completed",
+    "score": 50,
+    "correct_answers": 2,
+    "total_questions": 4,
+    "started_at": "2025-06-23T12:53:02",
+    "completed_at": "2025-06-23T12:54:13.184866",
+    "answers": [
+      {
+        "word": "Book",
+        "question": "What is the Uzbek translation of 'Book'?",
+        "correct_answer": "kitob",
+        "user_answer": "kitob",
+        "is_correct": true,
+        "translation": "Kitob",
+        "definition": null
+      },
+      {
+        "word": "Car",
+        "question": "What is the Uzbek translation of 'Car'?",
+        "correct_answer": "mashina",
+        "user_answer": "kitob",
+        "is_correct": false,
+        "translation": "Mashina",
+        "definition": null
+      },
+      {
+        "word": "word 2",
+        "question": "What is the Uzbek translation of 'word 2'?",
+        "correct_answer": "translation",
+        "user_answer": "kitob",
+        "is_correct": false,
+        "translation": "translation",
+        "definition": null
+      },
+      {
+        "word": "Book",
+        "question": "What is the Uzbek translation of 'Book'?",
+        "correct_answer": "kitob",
+        "user_answer": "kitob",
+        "is_correct": true,
+        "translation": "Kitob",
+        "definition": null
+      }
+    ]
+  }
+}
+
+finish
+{
+  "status_code": 200,
+  "is_success": true,
+  "details": "Quiz completed successfully",
+  "data": {
+    "quiz_id": 7,
+    "final_score": 0,
+    "correct_answers": 0,
+    "total_answered": 1,
+    "status": "completed"
+  }
+}

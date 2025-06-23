@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:language_learning_app_d4/models/folder_model.dart';
 import 'package:language_learning_app_d4/models/vocab_model.dart';
 import 'package:language_learning_app_d4/pages/folders/create_vocab_page.dart';
+import 'package:language_learning_app_d4/pages/quiz/folder_history_page.dart';
 import 'package:language_learning_app_d4/providers/folder_provider.dart';
 import 'package:language_learning_app_d4/providers/vocab_provider.dart';
 import 'package:language_learning_app_d4/widgets/button_widget.dart';
@@ -51,6 +52,20 @@ class _FolderDetailPageState extends State<FolderDetailPage> {
             fontWeight: FontWeight.w500,
           ),
         ),
+        actions: [
+          CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: () {
+              Get.to(FolderHistoryPage());
+            },
+            child: Icon(
+              Icons.history,
+              color: Color(0xff3461FD),
+              size: 28,
+            ),
+          ),
+          SizedBox(width: 10),
+        ],
       ),
       body: SafeArea(
         child: Padding(

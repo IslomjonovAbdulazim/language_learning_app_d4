@@ -6,7 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:language_learning_app_d4/pages/auth/login_page.dart';
+import 'package:language_learning_app_d4/pages/quiz/history_page.dart';
 import 'package:language_learning_app_d4/services/auth_service.dart';
+import 'package:language_learning_app_d4/widgets/button_widget.dart';
 
 import '../../models/profile_models.dart';
 import '../../providers/profile_provider.dart';
@@ -336,6 +338,13 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(height: 10),
+                    ButtonWidget(
+                      text: "Quiz History",
+                      onTap: () {
+                        Get.to(HistoryPage());
+                      },
                     ),
                   ],
                 ),
