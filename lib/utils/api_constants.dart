@@ -27,7 +27,33 @@ class ApiConstants {
   static String vocab(int folderId) {
     return "$baseUrl/folders/$folderId/vocab";
   }
+
+  // quiz
+  static String start(int folderId) {
+    return "$baseUrl/quiz/$folderId/start";
+  }
+
+  static String answer(int quizId) {
+    return "$baseUrl/quiz/$quizId/answer";
+  }
+
+  static String results(int quizId) {
+    return "$baseUrl/quiz/$quizId/results";
+  }
+
+  static String finish(int quizId) {
+    return "$baseUrl/quiz/$quizId/finish";
+  }
+
+  static String abandon(int quizId) {
+    return "$baseUrl/quiz/$quizId";
+  }
+
+  static String history() {
+    return "$baseUrl/quiz/history";
+  }
+
+  static String folderHistory(int folderId) {
+    return "$baseUrl/quiz/$folderId/history";
+  }
 }
-
-
-
