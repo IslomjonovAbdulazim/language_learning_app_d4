@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/text_widget.dart';
+
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
 
@@ -17,7 +19,15 @@ class _QuizPageState extends State<QuizPage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsetsGeometry.all(20),
+          padding: EdgeInsets.all(20),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TitleText("Quiz"),
+              ],
+            ),
+          ),
         ),
       ),
     );

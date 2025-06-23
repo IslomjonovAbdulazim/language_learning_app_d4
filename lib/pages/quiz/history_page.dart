@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/text_widget.dart';
+
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
 
@@ -17,7 +19,15 @@ class _HistoryPageState extends State<HistoryPage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsetsGeometry.all(20),
+          padding: EdgeInsets.all(20),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TitleText("History"),
+              ],
+            ),
+          ),
         ),
       ),
     );

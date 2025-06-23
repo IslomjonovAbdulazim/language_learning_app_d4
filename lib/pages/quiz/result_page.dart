@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/text_widget.dart';
+
 class ResultPage extends StatefulWidget {
   const ResultPage({super.key});
 
@@ -18,6 +20,14 @@ class _ResultPageState extends State<ResultPage> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsetsGeometry.all(20),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TitleText("Result"),
+              ],
+            ),
+          ),
         ),
       ),
     );
