@@ -203,7 +203,7 @@ class _FolderDetailPageState extends State<FolderDetailPage> {
                     )
                   : ButtonWidget(
                       onTap: () async {
-                        Get.to(QuizPage());
+                        Get.to(QuizPage(id: widget.folder.id));
                       },
                       text: "Test",
                     ),
