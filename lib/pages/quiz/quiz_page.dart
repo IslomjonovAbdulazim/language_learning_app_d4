@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:language_learning_app_d4/models/quiz_models.dart';
+import 'package:language_learning_app_d4/pages/quiz/result_page.dart';
 import 'package:language_learning_app_d4/providers/quiz_provider.dart';
+import 'package:language_learning_app_d4/widgets/button_widget.dart';
+import 'package:language_learning_app_d4/widgets/textfield_widget.dart';
 
 class QuizPage extends StatefulWidget {
   final int id;
@@ -43,6 +47,11 @@ class _QuizPageState extends State<QuizPage> {
     answer = await QuizProvider.answer(input, question!.quizId);
     isLoading = false;
     setState(() {});
+    if (answer?.quizCompleted != false) {
+      Get.off(ResultPage());
+    } else {
+      inputController.clear();
+    }
   }
 
   String get q {
@@ -70,19 +79,47 @@ class _QuizPageState extends State<QuizPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          leading: SizedBox(),
           backgroundColor: Colors.white,
           centerTitle: true,
           title: Text(
             count,
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
+            ),
           ),
         ),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(20),
             child: Center(
-              child: Column(
-                children: [],
-              ),
+              child: isLoading
+                  ? CircularProgressIndicator()
+                  : Column(
+                      children: [
+                        Text(
+                          q,
+                          style: GoogleFonts.poppins(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        TextFieldWidget(
+                          hint: "Your answer",
+                          focus: FocusNode(),
+                          controller: inputController,
+                        ),
+                        Spacer(),
+                        ButtonWidget(
+                          text: "Submit",
+                          onTap: () {
+                            check();
+                          },
+                        ),
+                      ],
+                    ),
             ),
           ),
         ),
