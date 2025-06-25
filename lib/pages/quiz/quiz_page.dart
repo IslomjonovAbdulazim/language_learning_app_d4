@@ -48,7 +48,7 @@ class _QuizPageState extends State<QuizPage> {
     isLoading = false;
     setState(() {});
     if (answer?.quizCompleted != false) {
-      Get.off(ResultPage());
+      Get.off(ResultPage(id: question!.quizId));
     } else {
       inputController.clear();
     }
