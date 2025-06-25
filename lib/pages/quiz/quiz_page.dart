@@ -12,20 +12,26 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (canPop, result) {
+        if (canPop) return;
+      },
+      child: Scaffold(
         backgroundColor: Colors.white,
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TitleText("Quiz"),
-              ],
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TitleText("Quiz"),
+                ],
+              ),
             ),
           ),
         ),

@@ -7,6 +7,7 @@ import 'package:language_learning_app_d4/models/folder_model.dart';
 import 'package:language_learning_app_d4/models/vocab_model.dart';
 import 'package:language_learning_app_d4/pages/folders/create_vocab_page.dart';
 import 'package:language_learning_app_d4/pages/quiz/folder_history_page.dart';
+import 'package:language_learning_app_d4/pages/quiz/quiz_page.dart';
 import 'package:language_learning_app_d4/providers/folder_provider.dart';
 import 'package:language_learning_app_d4/providers/vocab_provider.dart';
 import 'package:language_learning_app_d4/widgets/button_widget.dart';
@@ -189,10 +190,23 @@ class _FolderDetailPageState extends State<FolderDetailPage> {
                     )
                   : SizedBox(),
               SizedBox(height: 10),
-              ButtonWidget(
-                onTap: () {},
-                text: "Test",
-              ),
+              widget.folder.totalWords == 0
+                  ? Center(
+                      child: Text(
+                        "To start test. Folder should have at least 1 word",
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                  : ButtonWidget(
+                      onTap: () async {
+                        Get.to(QuizPage());
+                      },
+                      text: "Test",
+                    ),
               SizedBox(height: 5),
               Divider(),
               SizedBox(height: 10),
