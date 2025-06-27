@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:language_learning_app_d4/models/folder_history_models.dart';
 import 'package:language_learning_app_d4/models/quiz_models.dart';
 import 'package:language_learning_app_d4/utils/api_constants.dart';
 
@@ -76,5 +77,22 @@ class QuizProvider {
       colorText: Colors.red.shade800,
     );
     return null;
+  }
+
+  static Future<QuizHistoryModel?> allHistory() async {
+    final uri = Uri.parse(ApiConstants.history());
+    final response = await http.get(
+      uri,
+      headers: {
+        "Authorization": "Bearer ${AuthService.token}",
+        "Content-Type": "application/json",
+      },
+    );
+    final body = jsonDecode(response.body);
+    if (response.statusCode == 200 && body["status_code"] == 200) {
+      return QuizHistoryModel.fromJson(body);
+    } else {
+      return null;
+    }
   }
 }

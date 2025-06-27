@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:language_learning_app_d4/models/folder_history_models.dart';
+import 'package:language_learning_app_d4/providers/quiz_provider.dart';
 
 import '../../widgets/text_widget.dart';
 
@@ -10,6 +12,23 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
+  bool isLoading = false;
+  List<QuizHistoryModel> history = [];
+
+  @override
+  void initState() {
+    load();
+    super.initState();
+  }
+
+  void load() async {
+    isLoading = true;
+    setState(() {});
+    history = QuizProvider.;
+    isLoading = false;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
