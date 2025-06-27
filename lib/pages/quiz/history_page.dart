@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:language_learning_app_d4/models/folder_history_models.dart';
 import 'package:language_learning_app_d4/providers/quiz_provider.dart';
 
-import '../../widgets/text_widget.dart';
-
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
 
@@ -40,12 +38,12 @@ class _HistoryPageState extends State<HistoryPage> {
         child: Padding(
           padding: EdgeInsets.all(20),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TitleText("History"),
-              ],
-            ),
+            child: isLoading
+                ? CircularProgressIndicator()
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [],
+                  ),
           ),
         ),
       ),

@@ -1,7 +1,7 @@
 class FolderHistoryModel {
-  late String folderTitle;
-  late String folderOwner;
-  late bool isMyOwnFolder;
+  late String? folderTitle;
+  late String? folderOwner;
+  late bool? isMyOwnFolder;
   late List<QuizHistoryModel> quizHistory;
 
   FolderHistoryModel.fromJson(Map json) {
@@ -16,7 +16,7 @@ class FolderHistoryModel {
 
 class QuizHistoryModel {
   late int quizId;
-  late bool score;
+  late double score;
   late int correctAnswers;
   late int totalQuestions;
   late DateTime completedAt;
