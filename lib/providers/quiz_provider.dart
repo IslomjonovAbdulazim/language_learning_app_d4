@@ -79,7 +79,7 @@ class QuizProvider {
     return null;
   }
 
-  static Future<QuizHistoryModel?> allHistory() async {
+  static Future<FolderHistoryModel?> allHistory() async {
     final uri = Uri.parse(ApiConstants.history());
     final response = await http.get(
       uri,
@@ -90,7 +90,24 @@ class QuizProvider {
     );
     final body = jsonDecode(response.body);
     if (response.statusCode == 200 && body["status_code"] == 200) {
-      return QuizHistoryModel.fromJson(body);
+      return FolderHistoryModel.fromJson(body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<FolderHistoryModel?> folderHistory(int id) async {
+    final uri = Uri.parse(ApiConstants.folderHistory(id));
+    final response = await http.get(
+      uri,
+      headers: {
+        "Authorization": "Bearer ${AuthService.token}",
+        "Content-Type": "application/json",
+      },
+    );
+    final body = jsonDecode(response.body);
+    if (response.statusCode == 200 && body["status_code"] == 200) {
+      return FolderHistoryModel.fromJson(body);
     } else {
       return null;
     }

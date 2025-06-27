@@ -13,7 +13,7 @@ class HistoryPage extends StatefulWidget {
 
 class _HistoryPageState extends State<HistoryPage> {
   bool isLoading = false;
-  List<QuizHistoryModel> history = [];
+  FolderHistoryModel? history;
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _HistoryPageState extends State<HistoryPage> {
   void load() async {
     isLoading = true;
     setState(() {});
-    history = QuizProvider.;
+    history = await QuizProvider.allHistory();
     isLoading = false;
     setState(() {});
   }
