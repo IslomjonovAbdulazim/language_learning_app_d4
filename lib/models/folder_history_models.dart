@@ -9,8 +9,8 @@ class FolderHistoryModel {
     folderTitle = data["folder_title"];
     folderOwner = data["folder_owner"];
     isMyOwnFolder = data["is_my_own_folder"];
-    final json = List.from(data["quiz_history"]);
-    quizHistory = json.map((j) => QuizHistoryModel.fromJson(i)).toList();
+    final list = List.from(data["quiz_history"]);
+    quizHistory = list.map((j) => QuizHistoryModel.fromJson(j)).toList();
   }
 }
 
